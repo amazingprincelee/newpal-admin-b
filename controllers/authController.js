@@ -1,15 +1,17 @@
-import User from "../models/User";
+import User from "../models/User.js";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
+import { config } from "dotenv"
+config()
 
 const JWT_SECRET = process.env.JWT_SECRET
 
-console.log("jwt secrete key in auth controller", JWT_SECRET);
+
 
 
 const saltRound = 10;
 
-export const register = async (req, res)=>{
+export const registerUser = async (req, res)=>{
 
     try {
         const {fullname, username, email, phone, address, gender, password, role} = req.body;
@@ -44,7 +46,7 @@ export const register = async (req, res)=>{
 }
 
 
-export const login = async (req, res) => {
+export const loginUSer = async (req, res) => {
 
     const {username, password} = req.body;
 
@@ -65,3 +67,32 @@ export const login = async (req, res) => {
     }
 
 }
+
+
+
+export const getProfile = async (req, res) => {
+  try {
+    if (!req.user) {
+      return res.status(401).json({ message: "User not authenticated" });
+    }
+
+    // You can select specific fields if needed
+    const { _id, fullname, username, email, phone, address, gender, role } = req.user;
+
+    return res.status(200).json({
+      success: true,
+      user: {
+        id: _id,
+        fullname,
+        username,
+        email,
+        phone,
+        address,
+        gender,
+        role,
+      },
+    });
+  } catch (error) {
+    return res.status(500).json({ message: "Internal server error", error });
+  }
+};
