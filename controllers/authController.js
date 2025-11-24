@@ -1,7 +1,8 @@
-import User from "../models/User.js";
+import User from "../models/user.js";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 import { config } from "dotenv"
+import { generateRandomPassword } from "../utils/randomPassword.js"
 config()
 
 const JWT_SECRET = process.env.JWT_SECRET
@@ -14,7 +15,7 @@ const saltRound = 10;
 export const registerUser = async (req, res)=>{
 
     try {
-        const {fullname, username, email, phone, address, gender, password, role} = req.body;
+        const {fullname, username, email, phone, address, gender, role} = req.body;
 
         const user = await User.findOne({username: username});
 
@@ -22,8 +23,8 @@ export const registerUser = async (req, res)=>{
             res.status(400).json({message: "username already exists, please choose another username"})
         }
 
-        const hashedPassword = bcrypt.hash(password, saltRound)
-
+        const tempPassword = generateRandomPassword();
+   
         const userData = {
             fullname: fullname,
             username: username,
@@ -31,7 +32,7 @@ export const registerUser = async (req, res)=>{
             phone: phone,
             address: address,
             gender: gender,
-            password: hashedPassword,
+            tempPassword: tempPassword,
             role: role
         }
 
@@ -70,29 +71,4 @@ export const loginUSer = async (req, res) => {
 
 
 
-export const getProfile = async (req, res) => {
-  try {
-    if (!req.user) {
-      return res.status(401).json({ message: "User not authenticated" });
-    }
 
-    // You can select specific fields if needed
-    const { _id, fullname, username, email, phone, address, gender, role } = req.user;
-
-    return res.status(200).json({
-      success: true,
-      user: {
-        id: _id,
-        fullname,
-        username,
-        email,
-        phone,
-        address,
-        gender,
-        role,
-      },
-    });
-  } catch (error) {
-    return res.status(500).json({ message: "Internal server error", error });
-  }
-};

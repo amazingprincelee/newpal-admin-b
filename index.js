@@ -2,6 +2,8 @@ import express from "express";
 import http from "http";
 import { Server } from "socket.io";
 import authRoutes from "./routes/authRoute.js"; 
+import userRoutes from "./routes/userRoute.js";
+import connectDB from "./config/db.js";
 
 
 const app = express();
@@ -10,8 +12,11 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+connectDB()
+
 // Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
 
 // Create HTTP server
 const server = http.createServer(app);

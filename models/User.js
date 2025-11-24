@@ -6,6 +6,8 @@ const UserSchema = new mongoose.Schema({
     username: {type: String, required: true, unique: true},
     email: {type: String},
     phone: {type: String, required: true},
+    password: {type: String, default: null},
+    tempPassword: {type: String, required: true},
     address: {type: String, required: true},
     gender: {type: String, enum: ["female", "male", "other"]},
     role: {
@@ -25,7 +27,23 @@ const UserSchema = new mongoose.Schema({
             "lab",
             "finance"
         ]},
-    createdAt: {type: Date, default: Date.now},    
+
+         permissions: {
+        gate: { type: Boolean, default: false },
+        weighbridge: { type: Boolean, default: false },
+        inventory: { type: Boolean, default: false },
+        procurement: { type: Boolean, default: false },
+        sales: { type: Boolean, default: false },
+        dispatch: { type: Boolean, default: false },
+        production: { type: Boolean, default: false },
+        qa: { type: Boolean, default: false },
+        finance: { type: Boolean, default: false },
+        approve: { type: Boolean, default: false }
+    },
+
+    isActive: {type: Boolean, default: true},
+    createdAt: {type: Date, default: Date.now},   
+    updatedAt: {type: Date, default: null} 
 });
 
 
