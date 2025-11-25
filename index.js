@@ -37,7 +37,7 @@ app.use("/api/invoice", invoiceRoute);
 app.use("/api/production", productionBatchRoute);
 app.use("/api/sales", salesOrdersRoute);
 app.use("/api/vendor", vendorRoute);
-app.use("/api/visitor", vendorRoute);
+app.use("/api/visitor", visitorEntryRoute);
 
 // Create HTTP server
 const server = http.createServer(app);
