@@ -12,6 +12,7 @@ import productionBatchRoute from "./routes/productionBatchRoute.js";
 import invoiceRoute from "./routes/invoiceRoute.js";
 import salesOrdersRoute from "./routes/salesOrdersRoute.js";
 import vendorRoute from "./routes/vendorRoute.js";
+import financeRoute from "./routes/financeRoute.js"
 import visitorEntryRoute from "./routes/visitorEntryRoute.js"
 import connectDB from "./config/db.js";
 
@@ -38,6 +39,7 @@ app.use("/api/production", productionBatchRoute);
 app.use("/api/sales", salesOrdersRoute);
 app.use("/api/vendor", vendorRoute);
 app.use("/api/visitor", visitorEntryRoute);
+app.use("/api/finance", financeRoute);
 
 // Create HTTP server
 const server = http.createServer(app);
