@@ -1,13 +1,22 @@
 import mongoose from 'mongoose';
 
-
+const mongoDbConnection = false
 
 
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URI );
+     
+    if(mongoDbConnection){
 
-    console.log(`📦 MongoDB Connected: ${conn.connection.host}`);
+      const mongoDb = await mongoose.connect(process.env.MONGO_URI );
+      console.log(`📦 MongoDB Connected: ${mongoDb.connection.host}`);
+
+    }else{
+      await mongoose.connect(process.env.LOCAL_URL);
+        console.log("✅ Connected to Local MongoDB");
+    }
+      
+    
   } catch (error) {
     console.error('❌ Database connection error:', error.message);
     process.exit(1);
