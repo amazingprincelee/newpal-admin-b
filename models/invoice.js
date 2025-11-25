@@ -106,11 +106,6 @@ invoiceSchema.pre('save', function(next) {
   next();
 });
 
-// === INDEXES ===
-invoiceSchema.index({ invoiceNumber: 1 });
-invoiceSchema.index({ customer: 1, issueDate: -1 });
-invoiceSchema.index({ paymentStatus: 1 });
-invoiceSchema.index({ dueDate: 1 });
-invoiceSchema.index({ balanceDue: -1 });
+
 
 export default mongoose.model('Invoice', invoiceSchema);

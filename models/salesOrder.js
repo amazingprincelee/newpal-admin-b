@@ -141,11 +141,6 @@ salesOrderSchema.pre('save', function(next) {
   next();
 });
 
-// === INDEXES ===
-salesOrderSchema.index({ orderNumber: 1 });
-salesOrderSchema.index({ customer: 1, createdAt: -1 });
-salesOrderSchema.index({ status: 1 });
-salesOrderSchema.index({ 'mdApproval.status': 1 });
-salesOrderSchema.index({ expectedDeliveryDate: 1 });
+
 
 export default mongoose.model('SalesOrder', salesOrderSchema);

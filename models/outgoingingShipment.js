@@ -2,7 +2,7 @@
 import mongoose from 'mongoose';
 
 const outgoingShipmentSchema = new mongoose.Schema({
-  shipmentNumber: { type: String, required: true, unique: true, uppercase: true },
+  //shipmentNumber: { type: String, required: true, unique: true, uppercase: true },
 
   releasedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   releasedAt: { type: Date, default: Date.now },

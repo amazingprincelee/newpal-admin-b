@@ -1,4 +1,4 @@
-import Asset from '../models/Asset.js';
+import Asset from '../models/assets.js';
 
 export const createAsset = async (req, res) => {
   try {

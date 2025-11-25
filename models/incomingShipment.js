@@ -6,11 +6,12 @@ const incomingShipmentSchema = new mongoose.Schema({
   shipmentNumber: {
     type: String,
     required: true,
-    unique: true,
     uppercase: true,
     trim: true,
     // e.g., IS-2025-000487
   },
+
+  
 
   // === GATE ENTRY (Security at Gate) ===
   gateEntry: {

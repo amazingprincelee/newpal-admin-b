@@ -218,12 +218,6 @@ productionBatchSchema.pre('save', async function (next) {
 });
 
 
-// === INDEXES ===
-productionBatchSchema.index({ batchNumber: 1 });
-productionBatchSchema.index({ product: 1, createdAt: -1 });
-productionBatchSchema.index({ status: 1 });
-productionBatchSchema.index({ 'approval.status': 1 });
-productionBatchSchema.index({ qcStatus: 1 });
-productionBatchSchema.index({ plannedStart: 1 });
+
 
 export default mongoose.model('ProductionBatch', productionBatchSchema);

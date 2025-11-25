@@ -1,8 +1,8 @@
 // utils/numberGenerators.js
 import IncomingShipment from '../models/incomingShipment.js';
-import OutgoingShipment from '../models/OutgoingShipment.js';
+import OutgoingShipment from '../models/outgoingingShipment.js';
 import SalesOrder from '../models/salesOrder.js';
-import ProductionBatch from '../models/ProductionBatch.js';
+import ProductionBatch from '../models/production.js';
 
 // INCOMING SHIPMENT: IS-2025-000001
 let incomingCounter = 0;
