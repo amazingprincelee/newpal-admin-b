@@ -1,4 +1,4 @@
-import Inventory from "../../models/inventory";
+import Inventory from "../../models/inventory.js";
 
 
 export const getDashboardStats = async () => {
