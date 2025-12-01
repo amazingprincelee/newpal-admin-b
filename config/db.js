@@ -1,12 +1,12 @@
 import mongoose from 'mongoose';
 
-const mongoDbConnection = false
+const isMongoDbCloudConnection = true;
 
 
 const connectDB = async () => {
   try {
      
-    if(mongoDbConnection){
+    if(isMongoDbCloudConnection){
 
       const mongoDb = await mongoose.connect(process.env.MONGO_URI );
       console.log(`📦 MongoDB Connected: ${mongoDb.connection.host}`);

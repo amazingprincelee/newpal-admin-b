@@ -9,9 +9,6 @@ const JWT_SECRET = process.env.JWT_SECRET
 
 
 
-
-const saltRound = 10;
-
 export const registerUser = async (req, res)=>{
 
     try {
